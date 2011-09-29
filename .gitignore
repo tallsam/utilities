@@ -1,0 +1,41 @@
+settings.php
+sites/default/settings.php
+
+# MacOSX cache/metadata folders.
+.DS_Store
+
+# shit version control litter
+CVS
+
+# ditto
+.svn
+
+# legacy syncing technique
+.unison
+
+# Windows thumbnail cache
+Thumbs.db
+
+._*
+.tmp*
+sites/default/files/* 
+sites/default/files
+*~
+*.gz
+*.tgz
+#.bak
+.htaccess
+
+.sass-cache
+
+# VIM temporary swp, sw0 files.
+.*.sw*
+
+# PHP Log files one of the servers keeps barfing.
+error_log
+
+# drush sometimes stores backups here
+backup
+
+# boost module cache folder.
+public_html/cache 
