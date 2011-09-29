@@ -1,38 +1,32 @@
+# Drupal
 settings.php
 sites/default/settings.php
+sites/default/files/* 
+sites/default/files
+.htaccess
+backup
+public_html/cache 
 
-# OS Rubbish
+# Operating Systems
 .DS_Store
 Thumbs.db
 
-# VCS
+# Version Control Systems
 CVS
 .svn
-
 
 # Editors.
 ._*
 .tmp*
-sites/default/files/* 
-sites/default/files
 *~
 *.gz
 *.tgz
 #.bak
-.htaccess
 .*.sw*
 
+# Tools
 .sass-cache
-
-# Legacy syncing technique
 .unison
 
-
-# PHP Log files one of the servers keeps barfing.
+# PHP
 error_log
-
-# drush sometimes stores backups here
-backup
-
-# boost module cache folder.
-public_html/cache 
