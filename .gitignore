@@ -1,8 +1,8 @@
 # Drupal
 settings.php
-sites/default/settings.php
-sites/default/files/* 
-sites/default/files
+sites/*/settings.php
+sites/*/files/* 
+sites/*/files
 .htaccess
 backup
 public_html/cache 
