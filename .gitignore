@@ -21,7 +21,7 @@ CVS
 *~
 *.gz
 *.tgz
-#.bak
+*.bak
 .*.sw*
 
 # Tools
