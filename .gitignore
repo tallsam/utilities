@@ -6,6 +6,7 @@ sites/*/files
 .htaccess
 backup
 public_html/cache 
+drushrc.php
 
 # Operating Systems
 .DS_Store
