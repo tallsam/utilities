@@ -34,6 +34,6 @@ set filetype=php
 
 map <F2> :NERDTreeToggle<CR>
 
-set mouse=a
+"set mouse=a
 
-
+let g:debuggerPort = 9000
