@@ -8,8 +8,8 @@
 # Info on rsync & drush aliases
 
 # Drush aliases, set up in drush aliases files.
-LOCAL_ALIAS='@'
-UAT_ALIAS='@.prod'
+LOCAL_ALIAS='@grains'
+UAT_ALIAS='@grains.dev'
 
 # Path to drush. --debug for verbose output, -y so we dont have to arm the keyboard.
 DRUSH='drush -y'

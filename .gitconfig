@@ -1,6 +1,8 @@
 [user]
 	name = Sam Hassell
   email = sam@webzen.com.au
+[merge]
+  tool = meld
 [core]
   editor = vi
 [color]
@@ -14,6 +16,7 @@
   frag = magenta bold
   old = red bold
   new = green bold
+  whitespace = "red reverse"
 [color "status"]
   added = yellow
   changed = green

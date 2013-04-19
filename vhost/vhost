@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Trigger this script using ./vhost sitename, ie. "./vhost drupal"
+
+# This script helps set up the following:
+# * A directory under webroot, containing a docroot directory for docroot and tmp.
+# * Create an Apache Vhost, using mod macro.
+# * Add an entry to the hosts file, using $DOMAIN as the domain.
+# * Create an empty MySQL database using the supplied db authentication.
+
+if [ $(id -u) != "0" ]
+then
+    echo 'Attempting to append sudo..'
+    sudo "$0" "$@" 
+    exit $?
+fi
+
+SITENAME=$1
+USER='sam'
+WEBROOT="/home/$USER/www"
+DOMAIN='local.com'
+VHOSTNAME='sites'
+DB_USER='root'
+DB_PASS='password'
+
+echo $SITENAME
+
+# Create the skeleton
+echo "Creating directory skeleton"
+mkdir $WEBROOT/$SITENAME
+mkdir $WEBROOT/$SITENAME/docroot
+mkdir $WEBROOT/$SITENAME/tmp
+chown $USER:$USER $WEBROOT/$SITENAME -R
+
+# Add an entry to apache
+echo "Adding VHost to Apache"
+echo "Use VHost $SITENAME" >> /etc/apache2/sites-available/$VHOSTNAME
+/etc/init.d/apache2 restart
+
+# Add an entry to hosts
+echo "Adding entry to /etc/hosts"
+echo "127.0.1.1 $SITENAME.$DOMAIN" >> /etc/hosts
+
+
+# Create empty database;
+echo "Creating empty database with root credentials"
+mysql -u $DB_USER -p$DB_PASS -e "create database $SITENAME;"
+
+echo "Done."
