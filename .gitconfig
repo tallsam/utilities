@@ -34,7 +34,13 @@
   ls = ls-files
   # Show files ignored by git:
   #   ign = ls-files -o -i --exclude-standard
-  #
+  # Commit count for each author.
+  who = shortlog -s -n
+  # Total number of commits on the repo.
+  count = rev-list HEAD --count 
+  # Show files ignored by git:
+  ign = ls-files -o -i --exclude-standard
+
 [giggle]
 	main-window-maximized = false
 	main-window-geometry = 700x550+694+195

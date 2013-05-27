@@ -1,47 +1,69 @@
-<?php 
-$aliases['site.local'] = array (
-  'context_type' => 'site',
-  'platform' => '@platform_Site',
-  'server' => '@server_master',
-  'db_server' => '@server_localhost',
-  'uri' => 'site.shogun.com',
-  'root' => '/var/aegir/platforms/site',
-  'site_path' => '/var/aegir/platforms/site/sites/site.shogun.com',
-  'site_enabled' => true,
-  'language' => 'en',
-  'client_name' => 'admin',
-  'aliases' => 
-  array (
-    0 => 'www.site.shogun.com',
-  ),
-  'redirection' => '1',
-  'profile' => 'site',
-  '%dump' => '/var/aegir/backup/dump.sql',
-  'command-specific' => array (
-    'sql-sync' => array (
-      'no-cache' => TRUE,
-    ),
-  ),
-  'path-aliases' => array(
-    '%files' => 'sites/sitedir/files',
-  ),
-);
+<?php
 
-$aliases['site.prod'] = array(
-  'uri' => 'site.com.au',
-  'root' => '/home/site/public_html',
-  'remote-host' => 'site.com',
-  'remote-user' => 'root',
-  '%dump' => '/root/site-dump.sql',
-  'source-command-specific' => array(
-    'sql-sync' => array(
-      'skip-tables-list' => 'cache',
-    ),
-  ),
-  'path-aliases' => array(
-   '%files' => 'sites/sitedir/files',
-  ),
-);
+/**
+ * Define sites as follows
+ * 
+ * $sites['gateway'] => array(
+ *  'local_uri' => 'gateway.local.com',
+ *  'local_root' => '/home/sam/www/gateway/docroot',
+ *  'local_path' => '/home/sam/www/gateway/docroot/sites/default',
+ *   'remote_uri' => '',
+ *   'remote_root' => '',
+ *   'remote_path' => '',
+ *   'remote_host' => '',
+ *   'remote_user' => REMOTE_USER,
+ *   'remote_dump' => '', 
+ * );
+ */
 
-$options['shell-aliases']['pull-files'] = '!drush rsync @site.prod:%files/ @site.local:%files';
-$options['shell-aliases']['wipe'] = 'cache-clear all -verbose';
+$sites = array();
+
+if (file_exists('aliases.inc')) {
+  include 'aliases.inc';
+}
+
+
+
+foreach ($sites as $site_name => $site) {
+  $aliases[$site_name] = array (
+    'context_type' => 'site',
+    'db_server' => 'localhost',
+    'uri' => $site_name . '.local.com',
+    'root' => $site['local_root'],
+    'site_path' => $site['local_path'],
+    'site_enabled' => true,
+    'language' => 'en',
+    'client_name' => 'admin',
+    'aliases' =>  
+    array (
+      0 => 'www.' . $site . '.local.com',
+    ),  
+    'redirection' => '1',
+    'profile' => 'site',
+    '%dump' => '/home/sam/www/' . $site_name . '/tmp/dump.sql',
+    'command-specific' => array (
+      'sql-sync' => array (
+        'no-cache' => TRUE,
+      ),  
+    ),  
+    'path-aliases' => array(
+      '%files' => $site['local_root'] . '/default/files',
+    ),  
+  );  
+  $aliases[$site_name . '.dev'] = array(
+    'uri' => $site['remote_uri'],
+    'root' => $site['remote_root'],
+    'remote-host' => $site['remote_host'],
+    'remote-user' => $site['remote_user'],
+    '%dump' => $site['remote_dump'],
+    'source-command-specific' => array(
+      'sql-sync' => array(
+        'skip-tables-list' => 'cache',
+      ),
+    ),
+    'path-aliases' => array(
+      '%files' => $site['remote_path'] . '/files',
+    ),
+  );
+}
+
