@@ -18,11 +18,9 @@
 
 $sites = array();
 
-if (file_exists('aliases.inc')) {
-  include 'aliases.inc';
+if (file_exists('/home/sam/.drush/aliases.inc')) {
+  include '/home/sam/.drush/aliases.inc';
 }
-
-
 
 foreach ($sites as $site_name => $site) {
   $aliases[$site_name] = array (
