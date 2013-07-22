@@ -47,7 +47,7 @@ mysql -u $DB_USER -p$DB_PASS -e "create database $SITENAME;"
 
 # Drush alias
 echo "<?php
- \$sites['gateway'] = array(
+ \$sites['$SITENAME'] = array(
    'local_uri' => '$SITENAME.local.com',
    'local_root' => '/home/sam/www/$SITENAME/docroot',
    'local_path' => '/home/sam/www/$SITENAME/docroot/sites/default',
