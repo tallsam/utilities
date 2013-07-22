@@ -111,3 +111,8 @@ source ~/.git-completion.sh
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
+
+# Stop CTRL-S sending XOFF.
+stty ixany
+stty ixoff -ixon
+
