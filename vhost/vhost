@@ -57,7 +57,6 @@ echo "<?php
    'remote_host' => '',
    'remote_user' => REMOTE_USER,
    'remote_dump' => '', 
-  );?>
-  " >> ~/.drush/aliases.inc
+  );?>" >> ~/.drush/aliases.inc
 
 echo "Done."
