@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/sam/www/gateway/docroot/sites/all/modules/features/seed_workflow'
+let g:netrw_dirhist_2='/home/sam/www/gateway/docroot/sites/all/modules/features/seed_print'
+let g:netrw_dirhist_3='/etc/apache2/sites-available'
