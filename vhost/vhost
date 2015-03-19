@@ -34,7 +34,7 @@ chown $USER:$USER $WEBROOT/$SITENAME -R
 
 # Add an entry to apache
 echo "Adding VHost to Apache"
-echo "Use VHost $SITENAME" >> /etc/apache2/sites-available/$VHOSTNAME
+echo "Use VHost $SITENAME" >> /etc/apache2/sites-available/$VHOSTNAME.conf
 /etc/init.d/apache2 restart
 
 # Add an entry to hosts
