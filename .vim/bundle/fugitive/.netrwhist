@@ -1,9 +1,9 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/sam/www/gateway/docroot/sites/all/modules/features/seed_workflow'
-let g:netrw_dirhist_2='/home/sam/www/gateway/docroot/sites/all/modules/features/seed_print'
-let g:netrw_dirhist_3='/etc/apache2/sites-available'
-let g:netrw_dirhist_4='/home/sam/www/agweb/.git'
-let g:netrw_dirhist_5='/home/sam/www/agweb/docroot/sites/all/libraries/ckeditor/plugins'
-let g:netrw_dirhist_6='/home/sam/www/agcalc/test'
-let g:netrw_dirhist_7='/home/sam/www/puppet/modules/dafwa/files/apache'
+let g:netrw_dirhist_1='/home/sam/www/gateway/docroot/sites/all/modules/custom/ycc/js/bower_components/leaflet'
+let g:netrw_dirhist_2='/home/sam/www/gateway/docroot/sites/all/modules/custom/ycc/js/bower_components/ui-slider-dirty'
+let g:netrw_dirhist_3='/home/sam/Downloads/LibreOffice_4.4.0.3_Linux_x86-64_deb/readmes'
+let g:netrw_dirhist_4='/home/sam/.sqlplus'
+let g:netrw_dirhist_5='/etc/apache2/sites-enabled'
+let g:netrw_dirhist_6='/home/sam/www/soilwater/docroot'
+let g:netrw_dirhist_7='/etc/apache2/sites-enabled'

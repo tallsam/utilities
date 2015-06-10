@@ -127,12 +127,22 @@ export PATH=$HOME/.node/bin:$PATH
 export NODE_PATH=$NODE_PATH:/home/sam/.node/lib/node_modules
 
 # Strongloop / Loopback Oracle Environment Variable
-if [ -f ~/strong-oracle.rc ]; then
-  source ~/strong-oracle.rc
-  fi
+#if [ -f ~/strong-oracle.rc ]; then
+#  source ~/strong-oracle.rc
+#  fi
 export ORACLE_HOME=/usr/lib/oracle/12.1/client64
+export ORA_LIB=/usr/lib/oracle/12.1/client64
 export TNS_ADMIN=/home/sam/.sqlplus/tnsnames.ora
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib:/usr/lib/x86_64-linux-gnu
+
+# SQLplus is a lame duck cli tool. at least make it wrap and have history :/
+sqlplus() {
+ LD_LIBRARY_PATH='' 
+ rlwrap sqlplus64 $1
+}
+
+# Android SDK
+export PATH=${PATH}:/opt/android-sdk/platform-tools:/opt/android-sdk/tools
 
 # Owncloud client needs XDG_RUNTIME_DIR to be set in order for nautilus integration to work.
 if test -z "${XDG_RUNTIME_DIR}"; then
