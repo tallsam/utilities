@@ -1,9 +1,8 @@
-export PATH="$HOME/.composer/vendor/bin:$PATH"
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-PATH="$PATH:/home/sam/www/gateway/local"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -64,55 +63,36 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+# Aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias d='drush -y'
 alias ag='drush @ag -y'
 alias gw='drush @gw -y'
-
-# colorful tail
 alias tail='grc tail'
-
-# clean up after conflicts.
 alias patchclean='find . \( -name \*.orig -o -name \*.rej \) -delete'
-
-# pretty netstat
 alias whatup='multitail -R 2 -l "netstat -tp | grep ESTABLISHED"'
-
+alias pscan='nmap -v -sT'
 alias memcachestat='watch "echo stats | nc 127.0.0.1 11211"'
-
 alias irc='ssh -t syd.webzen.com.au screen -R -d'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 alias err='tail -f /var/log/apache2/error.log'
-alias j='autojump'
-alias c='cd ~/www/agweb/docroot/sites/all/themes/ag;compass watch'
 
-alias uat='ssh shassell@agspsrgw103'
-
-
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+# autojump woo.
+if [ -f /usr/share/autojump/autojump.bash ]; then
+  source /usr/share/autojump/autojump.bash
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
+# Git
 source ~/.git-completion.sh
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWDIRTYSTATE=1
@@ -122,27 +102,14 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 stty ixany
 stty ixoff -ixon
 
-# NodeJS
-export PATH=$HOME/.node/bin:$PATH
-export NODE_PATH=$NODE_PATH:/home/sam/.node/lib/node_modules
-
-# Strongloop / Loopback Oracle Environment Variable
-#if [ -f ~/strong-oracle.rc ]; then
-#  source ~/strong-oracle.rc
-#  fi
-export ORACLE_HOME=/usr/lib/oracle/12.1/client64
-export ORA_LIB=/usr/lib/oracle/12.1/client64
-export TNS_ADMIN=/home/sam/.sqlplus/tnsnames.ora
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib:/usr/lib/x86_64-linux-gnu
-
 # SQLplus is a lame duck cli tool. at least make it wrap and have history :/
-sqlplus() {
+sqlpluss() {
  LD_LIBRARY_PATH='' 
- rlwrap sqlplus64 $1
+ rlwrap /opt/instantclient/sqlplus $1
 }
 
 # Android SDK
-export PATH=${PATH}:/opt/android-sdk/platform-tools:/opt/android-sdk/tools
+export PATH=${PATH}:/home/sam/src/android-sdk/platform-tools:/home/sam/src/android-sdk/tools
 
 # Owncloud client needs XDG_RUNTIME_DIR to be set in order for nautilus integration to work.
 if test -z "${XDG_RUNTIME_DIR}"; then
@@ -152,3 +119,24 @@ mkdir "${XDG_RUNTIME_DIR}"
 chmod 0700 "${XDG_RUNTIME_DIR}"
 fi
 fi
+
+# NVM, node installer.
+export NVM_DIR="/home/sam/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# NodeJS
+export PATH=$HOME/.node/bin:$PATH
+export NODE_PATH=$NODE_PATH:/home/sam/.node/lib/node_modules
+
+# Drush
+if [ -x drush ]; then
+  # Include Drush prompt customizations.
+  . $HOME/.drush/drush.prompt.sh
+  # Include Drush completion.
+  . $HOME/.drush/drush.complete.sh
+  # Include Drush bash customizations.
+  . $HOME/.drush/drush.bashrc
+fi
+
+# PHP Composer
+export PATH="$HOME/.composer/vendor/bin:$PATH"
