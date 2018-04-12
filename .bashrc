@@ -87,6 +87,26 @@ alias irc='ssh -t syd.webzen.com.au screen -R -d'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias err='tail -f /var/log/apache2/error.log'
 
+# Docker aliases
+alias d='docker'
+alias di='docker images'
+alias drm='docker rm -f'
+alias drmc='docker rm -v -f $(docker ps -a -q -f status=exited)'
+alias drmi='docker rmi -f $(docker images -a -q)'
+#alias drma='docker rm -v $(docker ps -a -q)'
+alias dsa='docker stop $(docker ps -aq)'
+
+# Docker compose aliases
+alias dcr='docker-compose run --rm '
+alias dc='docker-compose'
+alias dcu='docker-compose up -d'
+alias dcd='docker-compose down'
+alias dcb='docker-compose build'
+
+# git aliases
+alias patchclean='find . \( -name \*.orig -o -name \*.rej \) -delete'
+
+
 # autojump woo.
 if [ -f /usr/share/autojump/autojump.bash ]; then
   source /usr/share/autojump/autojump.bash
@@ -111,7 +131,7 @@ sqlpluss() {
 # Android SDK
 export PATH=${PATH}:/home/sam/src/android-sdk/platform-tools:/home/sam/src/android-sdk/tools
 
-# Owncloud client needs XDG_RUNTIME_DIR to be set in order for nautilus integration to work.
+# Nextcloud client needs XDG_RUNTIME_DIR to be set in order for nautilus integration to work.
 if test -z "${XDG_RUNTIME_DIR}"; then
 export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
 if ! test -d "${XDG_RUNTIME_DIR}"; then
