@@ -88,6 +88,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias err='tail -f /var/log/apache2/error.log'
 
 # Docker aliases
+alias dps='docker ps'
 alias d='docker'
 alias di='docker images'
 alias drm='docker rm -f'
